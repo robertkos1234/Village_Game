@@ -20,6 +20,10 @@ def start(message):
 def main(message):
     if message.text == "Привет":
         bot.send_message(message.from_user.id, "И тебе привет")
+    elif message.text == "Создать деревню":
+        bot.send_message(message.from_user.id,Text.new_village)
+    else:
+        bot.send_message(message.from_user.id, "Моя твоя не понимать")
 
 
 bot.polling(non_stop=True)
