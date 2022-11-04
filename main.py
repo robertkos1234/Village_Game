@@ -56,5 +56,4 @@ def choice_name_village(message):
                          "Введите название деревни: ")
         bot.register_next_step_handler(message, name_new_village)
 
-
 bot.polling(non_stop=True)
