@@ -21,3 +21,8 @@ class Text():
         out += "Население: " + str(data["human"]) + "\n"
         out += "Опыт: " + str(data["exp"]) + "/" + str(data["need_exp"]) + "\n"
         return out
+
+    def taxes(self,data):
+        gold = data["human"]*data["tax"]
+        out = "Вы собрали налоги: + " + str(gold) + " золота"
+        return out

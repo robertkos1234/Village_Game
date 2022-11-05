@@ -27,6 +27,8 @@ def main(message):
         new_village(message)
     elif message.text == "Инфо":
         send_info(message)
+    elif message.text == "Собрать налоги":
+        collect_taxes(message)
     else:
         bot.send_message(message.from_user.id, "Моя твоя не понимать")
 
@@ -65,7 +67,17 @@ def choice_name_village(message):
 
 def send_info(message):
     info = data.get_data_person(message.from_user.id)
-    bot.send_message(message.from_user.id, Text.stat(Text,data = info))
 
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    button = types.KeyboardButton("Собрать налоги")
+    markup.add(button)
+
+    bot.send_message(message.from_user.id, Text.stat(Text,data = info), reply_markup=markup)
+
+def collect_taxes(message):
+    info = data.get_data_person(message.from_user.id)
+    gold = info["tax"]*info["human"]
+    data.add_gold(message.from_user.id,gold)
+    bot.send_message(message.from_user.id,Text.taxes(Text, data = info))
 
 bot.polling(non_stop=True)
