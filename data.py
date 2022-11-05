@@ -3,13 +3,13 @@ import json
 
 
 def generate_new_user(id):
-    data = get_data_person()
+    data = get_data()
     data[id] = {}
     out = data[id]
 
     out["name"] = ''
-    out["citizen"] = 100
-    out["gold"] = 100
+    out["human"] = 10
+    out["gold"] = 500
     out["exp"] = 0
     out["need_exp"] = 10
     out["lvl"] = 1
@@ -24,15 +24,24 @@ def update_data(new):
                   indent=4,
                   separators=(',', ': ')
                   )
-def get_data_person():
+def get_data():
     with open("BD.json", "r") as f:
         data = json.load(f)
     return data
 
 def check_person(id):
-    data = get_data_person()
+    data = get_data()
     try:
         x = data[str(id)]
         return True
     except:
         return False
+
+def set_name(id,name):
+    data = get_data()
+    data[str(id)]["name"] = name
+    update_data(data)
+
+def get_data_person(id):
+    data = get_data()
+    return data[str(id)]

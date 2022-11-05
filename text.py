@@ -13,3 +13,11 @@ class Text():
 
 Как назвать вашу деревню?
 """
+
+    def stat(self,data):
+        out = ""
+        out += str(data["name"]) + "  -  " + str(data["lvl"]) +" уровень\n\n"
+        out += "Золото: " + str(data["gold"]) + "\n"
+        out += "Население: " + str(data["human"]) + "\n"
+        out += "Опыт: " + str(data["exp"]) + "/" + str(data["need_exp"]) + "\n"
+        return out
